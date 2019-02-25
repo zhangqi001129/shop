@@ -101,10 +101,8 @@ class WeixinController extends Controller
             echo '$sub_time: ' . $sub_time;
             //获取用户信息
             $user_info = $this->getUserInfo($openid);
-            echo '<pre>';print_r($user_info);echo '</pre>';
             //保存用户信息
             $u = WeixinUser::where(['openid'=>$openid])->first();
-            //var_dump($u);die;
             if($u){       //用户不存在
                 echo '用户已存在';
             }else{
