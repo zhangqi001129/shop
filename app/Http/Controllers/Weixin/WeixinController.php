@@ -1,9 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Weixin;
-
-namespace App\Http\Controllers\Weixin;
-
 use App\Model\WeixinUser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -11,7 +8,6 @@ use App\Model\WxMatter;
 use App\Model\WxChat;
 use Illuminate\Support\Facades\Redis;
 use GuzzleHttp;
-
 use Illuminate\Support\Facades\Storage;
 
 class WeixinController extends Controller
@@ -92,7 +88,6 @@ class WeixinController extends Controller
                                     </xml>';
                 echo $xml_response;
             }
-            exit();
         }
         //判断事件类型
         if($event=='subscribe'){                        //扫码关注事件
@@ -115,7 +110,6 @@ class WeixinController extends Controller
                     'subscribe_time'    => $sub_time,
                 ];
                 $id = WeixinUser::insertGetId($user_data);      //保存用户信息
-                var_dump($id);
             }
         }elseif($event=='CLICK'){               //click 菜单
             if($xml->EventKey=='kefu01'){
