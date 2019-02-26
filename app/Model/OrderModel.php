@@ -16,4 +16,11 @@ class OrderModel extends Model
     public  static function Ordernumber(){
         return date('ymdHi').rand(1,999999).rand(25466,999999);
     }
+    /**
+     * 生成订单号
+     */
+    public static function generateOrderSN()
+    {
+        return date('ymdH') . rand(11111,99999) . rand(2222,9999);
+    }
 }

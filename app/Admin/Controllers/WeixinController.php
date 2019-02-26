@@ -102,7 +102,7 @@ class WeixinController extends Controller
      */
     protected function detail($id)
     {
-        $show = new Show(WechatUser::findOrFail($id));
+        $show = new Show(WeixinUser::findOrFail($id));
 
         $show->id('Id');
         $show->uid('Uid');
@@ -123,7 +123,7 @@ class WeixinController extends Controller
      */
     protected function form()
     {
-        $form = new Form(new WechatUser);
+        $form = new Form(new WeixinUser);
 
         $form->number('uid', 'Uid');
         $form->text('openid', 'Openid');

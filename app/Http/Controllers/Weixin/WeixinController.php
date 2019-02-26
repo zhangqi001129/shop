@@ -357,7 +357,7 @@ class WeixinController extends Controller
     }
     public function formShow()
     {
-        return view('wechat.wechat');
+        return view('Weixin.Weixin');
     }
     public function formTest(Request $request)
     {
