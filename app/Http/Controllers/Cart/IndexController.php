@@ -86,13 +86,6 @@ class IndexController extends Controller
         $num = $request->input('num');
         //检查库存
         $store_num = GoodsModel::where(['goods_id'=>$goods_id])->value('store');
-        if($store_num<=0){
-            $response = [
-                'errno' => 5001,
-                'msg'   => '库存不足'
-            ];
-            return $response;
-        }
 
         //写入购物车表
         $data = [
