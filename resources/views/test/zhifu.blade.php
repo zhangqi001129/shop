@@ -1,10 +1,3 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: 张琦
- * Date: 2019/2/27
- * Time: 上午 09:16
- */
 @extends('layouts.bst')
 
 @section('content')
