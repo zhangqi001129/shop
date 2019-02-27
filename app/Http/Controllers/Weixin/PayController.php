@@ -196,6 +196,22 @@ class PayController extends Controller
         echo $response;
 
     }
+    public function success(Request $resquest){
+        $order_id=$resquest->input('order_id');
+        $res=OrderModel::where(['oid'=>$order_id])->first();
+        if($res->orderpay== 1){
+            $data=[
+                'error'=>0,
+                'msg'=>"支付成功"
+            ];
+        }else{
+            $data=[
+                'error'=>4001,
+                'msg'=>"支付失败"
+            ];
+        }
+        return $data;
+    }
 
 
 }
