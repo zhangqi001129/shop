@@ -33,15 +33,16 @@ class PayController extends Controller
             'trade_type'    => 'NATIVE'                         // 交易类型
         ];
 
-
         $this->values = [];
         $this->values = $order_info;
         $this->SetSign();
 
         $xml = $this->ToXml();      //将数组转换为XML
+
         $rs = $this->postXmlCurl($xml, $this->weixin_unifiedorder_url, $useCert = false, $second = 30);
 
         $data =  simplexml_load_string($rs);
+
 //        //var_dump($data);echo '<hr>';
 //        echo 'return_code: '.$data->return_code;echo '<br>';
 //		echo 'return_msg: '.$data->return_msg;echo '<br>';
@@ -164,7 +165,7 @@ class PayController extends Controller
     /**
      * 微信支付回调
      */
-    public function nothfdice()
+    public function notice()
     {
         $data = file_get_contents("php://input");
 
@@ -180,7 +181,9 @@ class PayController extends Controller
 
             if($sign){       //签名验证成功
                 //TODO 逻辑处理  订单状态更新
-                OrderModel::where(['order_sn'=>$xml->out_trade_no])->update(['is_pay'=>1]);
+                $date=['is_pay'=>1];
+                $where=['order_sn'=>$xml->out_trade_no];
+                OrderModel::where($where)->update($date);
             }else{
                 //TODO 验签失败
                 echo '验签失败，IP: '.$_SERVER['REMOTE_ADDR'];
