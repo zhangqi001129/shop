@@ -28,8 +28,8 @@ class LoginController extends Controller
     {
         echo '<pre>';print_r($_POST);echo '</pre>';
 
-        $emial = $request->input('u_email');
-        $pass = $request->input('u_pass');
+        $emial = $request->input('email');
+        $pass = $request->input('pass');
 
         $u = UserModel::where(['email'=>$emial])->first();
 
