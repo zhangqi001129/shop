@@ -69,7 +69,7 @@ Route::get('/user/center','User\UserController@center');
 //Route::get('/cart','Cart\IndexController@index')->middleware('check.uid');
 Route::get('/cart','Cart\IndexController@index')->middleware('check.login.token');
 Route::get('/cart/add/{goods_id}','Cart\IndexController@add');      //添加商品
-Route::post('/cart/add2','Cart\IndexController@add2')->middleware('check.login.token');      //添加商品
+Route::post('/cart/add2','Cart\IndexController@add2');      //添加商品
 Route::get('/cartdel/{goods_id}','Cart\IndexController@del')->middleware('check.login.token');
 Route::get('/cartdel2/{goods_id}','Cart\IndexController@del2')->middleware('check.login.token');
 
