@@ -85,17 +85,7 @@ class UserController extends Controller
 
     public function center(Request $request)
     {
-        if($_COOKIE['token'] != $request->session()->get('u_token')){
-            echo '非法请求';
-            header('refresh:1,/userlogin');
-            exit;
-        }else{
-            echo "正常请求";
-        }
-        if(empty($_COOKIE['id'])){
-            header('refresh:1,/userlogin');
-            exit;
-        }
+        
         echo "id:".$_COOKIE['id'].'欢迎回来';
     }
 }
