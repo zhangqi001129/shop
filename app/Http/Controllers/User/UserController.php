@@ -85,7 +85,7 @@ class UserController extends Controller
 
     public function center(Request $request)
     {
-        
-        echo "id:".$_COOKIE['id'].'欢迎回来';
+
+        echo '欢迎回来';
     }
 }
