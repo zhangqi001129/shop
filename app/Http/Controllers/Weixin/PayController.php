@@ -199,7 +199,7 @@ class PayController extends Controller
     public function success(Request $resquest){
         $order_id=$resquest->input('order_id');
         $res=OrderModel::where(['oid'=>$order_id])->first();
-        if($res->orderpay== 1){
+        if($res->is_pay== 1){
             $data=[
                 'error'=>0,
                 'msg'=>"支付成功"
