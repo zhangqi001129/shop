@@ -55,7 +55,7 @@ class UserController extends Controller
             die("用户名已存在");
         }
 
-        $pass1 = $request->input('pass');
+        $pass1 = $request->input('password');
         $pass2 = $request->input('u_pass2');
 
 
@@ -68,8 +68,8 @@ class UserController extends Controller
         $data = [
             'nick_name'  => $request->input('nick_name'),
             'email'  => $request->input('u_email'),
-            'reg_time'  => time(),
-            'pass'  => $pass
+            'created_at'  => time(),
+            'password'  => $pass
         ];
 
         $uid = UserModel::insertGetId($data);

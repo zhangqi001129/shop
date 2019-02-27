@@ -13,7 +13,7 @@
         <input type="email" name="email" id="inputEmail" class="form-control" placeholder="@" required autofocus>
 
         <label for="inputPassword" >密码</label>
-        <input type="password" name="pass" id="inputPassword" class="form-control" placeholder="***" required>
+        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="***" required>
 
         <label for="inputPassword2" >确认密码</label>
         <input type="password" name="u_pass2" id="inputPassword2" class="form-control" placeholder="***" required>
