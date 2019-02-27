@@ -67,7 +67,7 @@ class UserController extends Controller
 
         $data = [
             'nick_name'  => $request->input('nick_name'),
-            'email'  => $request->input('u_email'),
+            'email'  => $request->input('email'),
             'created_at'  => time(),
             'password'  => $pass
         ];
