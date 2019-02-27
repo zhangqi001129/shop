@@ -59,7 +59,7 @@ Route::post('/userreg','User\UserController@doReg');
 
 //用户登录
 Route::get('/userlogin','Login\LoginController@login_reg');
-Route::post('/userlogin','Login\LoginController@login_doReg');
+Route::post('/userlogin','Login\LoginController@doLogin');
 
 //个人主页
 Route::get('/user/center','User\UserController@center');
