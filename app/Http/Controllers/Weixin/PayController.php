@@ -12,16 +12,13 @@ class PayController extends Controller
     //
 
     public $weixin_unifiedorder_url = 'https://api.mch.weixin.qq.com/pay/unifiedorder';
-    public $weixin_notify_url = 'http://zq.lixiaonitongxue.top/weixin/pay/notice';     //支付通知回调
+    public $weixin_notify_url = 'http://http://zq.lixiaonitongxue.top/weixin/pay/notice';     //支付通知回调
 
     public function test()
     {
-
-
         //
         $total_fee = 1;         //用户要支付的总金额
         $order_id = OrderModel::generateOrderSN();
-
         $order_info = [
             'appid'         =>  env('WEIXIN_APPID_0'),      //微信支付绑定的服务号的APPID
             'mch_id'        =>  env('WEIXIN_MCH_ID'),       // 商户ID
@@ -57,9 +54,9 @@ class PayController extends Controller
         echo 'code_url: '.$data->code_url;echo '<br>';
 //        die;
         //echo '<pre>';print_r($data);echo '</pre>';
-
         //将 code_url 返回给前端，前端生成 支付二维码
-
+        $url=$data->code_url;
+        return view('test.zhifu',$url);
     }
 
 
