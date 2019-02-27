@@ -17,7 +17,7 @@
                 <td class="danger">{{$v['order_amount']}}</td>
                 <td class="danger">
                     @if($v['is_pay']=='0')
-                        <a href="/Pay/{{$v['oid']}}" class="del_goods">付款</a>
+                        <a href="/weixin/pay/test" class="del_goods">付款</a>
                     @elseif($v['is_pay']=='1')
                         已付款
                     @endif
