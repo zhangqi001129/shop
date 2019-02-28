@@ -465,7 +465,7 @@ class WeixinController extends Controller
     {
         $myurl="https:mall.77sc.com.cn/weixin.php?rl=http://zq.lixiaonitongxue.top/weixin/getcode";
         $data=[
-            'url'=>'https://open.weixin.qq.com/connect/qrconnect?appid=wxe24f70961302b5a5&redirect_uri='.$myurl.'&response_type=code&scope=snsapi_login&state=STATE#wechat_redirect'
+            'url'=>'https://open.weixin.qq.com/connect/qrconnect?appid=wxe24f70961302b5a5&redirect_uri='.urlencode($myurl).'&response_type=code&scope=snsapi_login&state=STATE#wechat_redirect'
         ];
         return view('weixin.login',$data);
     }
