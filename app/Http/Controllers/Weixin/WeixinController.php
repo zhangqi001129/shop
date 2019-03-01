@@ -467,7 +467,7 @@ class WeixinController extends Controller
         $data=[
             'url'=>'https://open.weixin.qq.com/connect/qrconnect?appid=wxe24f70961302b5a5&redirect_uri='.urlencode($myurl).'&response_type=code&scope=snsapi_login&state=STATE#wechat_redirect'
         ];
-        return view('weixin.login',$data);
+        return view('users.login',$data);
     }
 
     /**
@@ -482,22 +482,33 @@ class WeixinController extends Controller
         $token_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxe24f70961302b5a5&secret=0f121743ff20a3a454e4a12aeecef4be&code=' . $code . '&grant_type=authorization_code';
         $token_json = file_get_contents($token_url);
         $token_arr = json_decode($token_json, true);
-        echo '<hr>';
-        echo '<pre>';
-        print_r($token_arr);
-        echo '</pre>';
-
         $access_token = $token_arr['access_token'];
         $openid = $token_arr['openid'];
 
         // 3 携带token  获取用户信息
         $user_info_url = 'https://api.weixin.qq.com/sns/userinfo?access_token=' . $access_token . '&openid=' . $openid . '&lang=zh_CN';
         $user_json = file_get_contents($user_info_url);
-
         $user_arr = json_decode($user_json, true);
-        echo '<hr>';
-        echo '<pre>';
+
         print_r($user_arr);
-        echo '</pre>';
+
+        $unionid=$user_arr['unionid'];
+        $u=WeixinUser::where(['unionid'=>$unionid])->first();
+        if(empty($u)){
+            $u_data = [
+                'name'  => $user_arr['nickname']
+            ];
+            $uid = UserModel::insertGetId($u_data);
+            //添加微信用户表
+            $wx_u_data = [
+                'uid'       => $uid,
+                'openid'    => str_random(16),
+                'add_time'  => time(),
+                'sex'       => $user_arr['sex'],
+                'headimgurl'    => $user_arr['headimgurl'],
+                'unionid'   => $unionid
+            ];
+            $wx_id = WeixinUser::insertGetId($wx_u_data);
+        }
     }
 }
