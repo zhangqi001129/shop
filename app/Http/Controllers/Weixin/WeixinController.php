@@ -497,7 +497,7 @@ class WeixinController extends Controller
         $u=WeixinUser::where(['unionid'=>$unionid])->first();
         if(empty($u)){
             $u_data = [
-                'name'  => $user_arr['nickname']
+                'nick_name'  => $user_arr['nickname']
             ];
             $uid = UserModel::insertGetId($u_data);
             //添加微信用户表
