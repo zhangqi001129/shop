@@ -503,8 +503,10 @@ class WeixinController extends Controller
             //添加微信用户表
             $wx_u_data = [
                 'uid'       => $uid,
+                'nickname'  => $user_arr['nickname'],
                 'openid'    => str_random(16),
                 'add_time'  => time(),
+                'subscribe_time'=>time(),
                 'sex'       => $user_arr['sex'],
                 'headimgurl'    => $user_arr['headimgurl'],
                 'unionid'   => $unionid
