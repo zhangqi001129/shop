@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Model\WxMatter;
 use App\Model\WxChat;
 use Illuminate\Support\Facades\Redis;
+use App\Model\UserModel;
 use GuzzleHttp;
 use Illuminate\Support\Facades\Storage;
 
