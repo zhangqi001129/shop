@@ -485,14 +485,11 @@ class WeixinController extends Controller
         $token_arr = json_decode($token_json, true);
         $access_token = $token_arr['access_token'];
         $openid = $token_arr['openid'];
-
         // 3 携带token  获取用户信息
         $user_info_url = 'https://api.weixin.qq.com/sns/userinfo?access_token=' . $access_token . '&openid=' . $openid . '&lang=zh_CN';
         $user_json = file_get_contents($user_info_url);
         $user_arr = json_decode($user_json, true);
-
-        print_r($user_arr);
-
+        //入库
         $unionid=$user_arr['unionid'];
         $u=WeixinUser::where(['unionid'=>$unionid])->first();
         if(empty($u)){
@@ -512,6 +509,74 @@ class WeixinController extends Controller
                 'unionid'   => $unionid
             ];
             $wx_id = WeixinUser::insertGetId($wx_u_data);
+        }else{
+            echo '欢迎登陆';
         }
     }
+
+    /**
+     * 微信jssdk 调试
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function jssdkTest()
+    {
+
+        //计算签名
+
+        $jsconfig = [
+            'appid' => env('WEIXIN_APPID_0'),        //APPID
+            'timestamp' => time(),
+            'noncestr'    => str_random(10),
+            //'sign'      => $this->wxJsConfigSign()
+        ];
+
+        $sign = $this->wxJsConfigSign($jsconfig);
+        $jsconfig['sign'] = $sign;
+        $data = [
+            'jsconfig'  => $jsconfig
+        ];
+        return view('weixin.jssdk',$data);
+    }
+
+    /**
+     * 计算JSSDK sign
+     */
+    public function wxJsConfigSign($param)
+    {
+        $current_url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];     //当前调用 jsapi的 url
+        $ticket = $this->getJsapiTicket();
+        $str =  'jsapi_ticket='.$ticket.'&noncestr='.$param['noncestr']. '&timestamp='. $param['timestamp']. '&url='.$current_url;
+        $signature=sha1($str);
+        return $signature;
+    }
+
+
+    /**
+     * 获取jsapi_ticket
+     * @return mixed
+     */
+    public function getJsapiTicket()
+    {
+
+        //是否有缓存
+        $ticket = Redis::get($this->redis_weixin_jsapi_ticket);
+        if(!$ticket){           // 无缓存 请求接口
+            //$access_token = $this->getWXAccessToken();
+            $access_token = $this->getWXAccessToken();
+
+            $ticket_url = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token='.$access_token.'&type=jsapi';
+            $ticket_info = file_get_contents($ticket_url);
+            $ticket_arr = json_decode($ticket_info,true);
+
+            if(isset($ticket_arr['ticket'])){
+                $ticket = $ticket_arr['ticket'];
+                Redis::set($this->redis_weixin_jsapi_ticket,$ticket);
+                Redis::setTimeout($this->redis_weixin_jsapi_ticket,3600);       //设置过期时间 3600s
+            }
+        }
+        return $ticket;
+
+    }
+
+
 }
