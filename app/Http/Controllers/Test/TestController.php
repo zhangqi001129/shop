@@ -69,7 +69,7 @@ class TestController extends Controller
             '152.136.57.180',
         ];
         foreach($server_name as $k=>$v){
-            $cmd= 'ssh '.$v .' " cd /home/wwwroot/fabu ; git pull" ';
+            $cmd= 'ssh '.$v .' " cd /home/wwwroot/shop ; git pull" ';
             echo $cmd;echo '<hr>';
             $result= shell_exec($cmd);
         }
