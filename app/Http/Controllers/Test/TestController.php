@@ -63,10 +63,10 @@ class TestController extends Controller
 
 	}
 
-<<<<<<< HEAD
-	public function test(){
+	public function api()
+    {
         return $_POST;
-=======
+    }
 	public function fabu(){
         //11111
         $server_name=[
@@ -78,6 +78,5 @@ class TestController extends Controller
             echo $cmd;echo '<hr>';
             $result= shell_exec($cmd);
         }
->>>>>>> 7c4111b52dc3fd42dd4c5f1122293eb83c961b18
     }
 }
