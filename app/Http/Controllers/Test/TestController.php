@@ -62,4 +62,8 @@ class TestController extends Controller
 
 
 	}
+
+	public function test(){
+        return $_POST;
+    }
 }
