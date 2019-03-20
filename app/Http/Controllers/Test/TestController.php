@@ -65,7 +65,7 @@ class TestController extends Controller
 
 	public function api()
     {
-        $data=$_POST['data'];
+        $data=$_POST;
         return $data;
     }
 	public function fabu(){
