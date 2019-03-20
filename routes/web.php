@@ -129,7 +129,24 @@ Route::post('/chat/msg','Weixin\WeixinController@chatmsg');  //客服发送消�
 //微信支付
 Route::get('/weixin/pay/test/{id}','Weixin\PayController@test');     //微信支付测试
 Route::post('/weixin/pay/notice','Weixin\PayController@notice');     //微信支付通知回调
+<<<<<<< HEAD
 
 
 //测试
 Route::post('/test/api','Test\TestController@test');
+=======
+Route::get('/weixin/pay/success','Weixin\PayController@success');//
+
+
+//微信登录
+Route::get('/weixin/login','Weixin\WeixinController@login');        //微信登录
+Route::get('/weixin/getcode','Weixin\WeixinController@getCode');        //接收code
+
+
+//微信 JSSDK
+
+Route::get('/weixin/jssdk/test','Weixin\WeixinController@jssdkTest');       // 测试
+
+
+Route::get('/fabu','Test\TestController@fabu');       // 测试
+>>>>>>> 7c4111b52dc3fd42dd4c5f1122293eb83c961b18

@@ -63,7 +63,21 @@ class TestController extends Controller
 
 	}
 
+<<<<<<< HEAD
 	public function test(){
         return $_POST;
+=======
+	public function fabu(){
+        //11111
+        $server_name=[
+            '211.159.180.88',
+            '152.136.57.180',
+        ];
+        foreach($server_name as $k=>$v){
+            $cmd= 'ssh '.$v .' " cd /home/wwwroot/shop ; git pull" ';
+            echo $cmd;echo '<hr>';
+            $result= shell_exec($cmd);
+        }
+>>>>>>> 7c4111b52dc3fd42dd4c5f1122293eb83c961b18
     }
 }

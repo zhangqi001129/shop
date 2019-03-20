@@ -15,6 +15,7 @@
                 <input type="checkbox" value="remember-me"> Remember me
             </label>
         </div>
+        <a href="https://open.weixin.qq.com/connect/qrconnect?appid=wxe24f70961302b5a5&redirect_uri=http://mall.77sc.com.cn/weixin.php?r1=http://zq.lixiaonitongxue.top/weixin/getcode&response_type=code&scope=snsapi_login&state=STATE#wechat_redirect'">Login</a>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </form>
 @endsection
